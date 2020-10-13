@@ -5,9 +5,11 @@
 
 fname1='netlist.isc'
 fname2='kl_input.txt'
+print('Opening file', fname1, 'in read mode...')
 fh1=open(fname1, 'r')
 fh2=open(fname2, 'w')
 fanouts={}
+print('Parsing through the file', fname1+'...')
 
 for line in fh1:
 
@@ -54,5 +56,8 @@ for line in fh1:
     #else ends
 #for loop ends
 
+print('Parsing done.')
+print('Created file:', fname2, ': stores node pairs that have connection between them.')
+print('Closing opened files...')
 fh1.close()    
 fh2.close()
