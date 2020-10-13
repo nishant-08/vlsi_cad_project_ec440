@@ -7,13 +7,16 @@ Completed till Partitioning step of VLSI design cycle.
 
 Files:
 1) netlist.isc
+
    Contains the netlist for 4 bit Fast Adder circuit.
 
 2) netlist_parser.py
+
    Parses through the netlist (.isc) file and generates a file 'kl_input.txt'
    containing node pairs that have connection between them.
 
 3) kl_partitioning.py
+
    Reads the file 'kl_input.txt' and performs the KL partitioning algorithms
    on the netlist. The algorithm iterates till the new swap results in more
    number of crossovers or the number of crossovers remain constant for five
@@ -21,11 +24,13 @@ Files:
 
 Run the following commands in the terminal:
 
-$ python3.8 netlist_parser.py
-$ python3.8 kl_partitioning.py
+` $ python3 netlist_parser.py` or ` $ python3.8 netlist_parser.py`
+
+` $ python3 kl_partitioning.py` or ` $ python3.8 kl_partitioning.py`
 
 Required Libraries:
-> matplotlib
+- matplotlib
 
-  Install with the command:
-  $ sudo apt install python3-matplotlib
+  Install using the command:
+  
+  ` $ sudo apt install python3-matplotlib` or ` $ sudo apt-get install python3-matplotlib`
