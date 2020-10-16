@@ -1,7 +1,9 @@
-#Python scrript to read the file containing node pairs with connection between them.
-#Produces a file with nodes partitioned into two sets with minimal crossing between them.
+#Python script to read the file containing node pairs with connection between them.
+#Displays the partitioning before and after applying the KL algorithm.
+#Also displays the number of crossovers agains the number of iterations.
 
 import matplotlib.pyplot as plt
+import networkx as nx
 
 def calc_cross(a_nodes, b_nodes):
     fhcross=open('kl_input.txt', 'r')
@@ -72,6 +74,30 @@ def calc_diff(a_nodes, b_nodes):
     return a_nodes_diff, b_nodes_diff
 #function calc_diff ends
 
+def display_partition(a_nodes, b_nodes):
+    fhnetwork=open('kl_input.txt', 'r')
+    g=nx.Graph()
+    fixed_positions={}
+    
+    for line in fhnetwork:
+        line=line.split()
+        g.add_edge(int(line[0]), int(line[1]))
+    #for loop ends
+
+    for i in range(len(a_nodes)):
+        fixed_positions[int(a_nodes[i])]=(-10, i)
+    #for loop ends
+
+    for i in range(len(b_nodes)):
+        fixed_positions[int(b_nodes[i])]=(10, i)
+    #for loop ends
+
+    fixed_nodes=fixed_positions.keys()
+    pos=nx.spring_layout(g, pos=fixed_positions, fixed=fixed_nodes)
+    nx.draw(g, pos, with_labels=True)
+    fhnetwork.close()
+#function display_partition ends
+
 def swap_nodes(a_nodes, b_nodes, node_a, node_b):
     ind_a=a_nodes.index(node_a)
     ind_b=b_nodes.index(node_b)
@@ -104,9 +130,12 @@ print('Initial Partitioning (randomized):\n')
 print('Nodes in partition A:\n', a_nodes)
 print('\nNodes in partition B:\n', b_nodes)
 new_cross_count=calc_cross(a_nodes, b_nodes)
-print('Number of crossovers before partitioning:', new_cross_count, '\n')
+print('\nNumber of crossovers before applying KL partitioning algorithm:', new_cross_count, '\n')
+plt.figure(1)
+plt.title('Before applying KL partitioning algorithm. (Crossovers: '+str(new_cross_count)+')')
+display_partition(a_nodes, b_nodes)
 const_count=0
-print('Applying KL algorithm for partitioning the nodes in 2 sets such that there is minimal crossovers between the sets...\n')
+print('\nApplying KL algorithm for partitioning the nodes in 2 sets such that there is minimal crossovers between the sets...\n')
 crosses=[new_cross_count]
 
 while True:
@@ -149,13 +178,18 @@ while True:
 print('Final Partitioning (after performing KL partitioning algorithm):\n')
 print('Nodes in partition A:\n', a_nodes)
 print('\nNodes in partition B:\n', b_nodes)
-print('Number of crossovers after partitioning:', calc_cross(a_nodes, b_nodes), '\n')
+new_cross_count=calc_cross(a_nodes, b_nodes)
+print('\nNumber of crossovers after applying KL partitioning algorithm:', new_cross_count, '\n')
+plt.figure(2)
+plt.title('After applying KL partitioning algorithm. (Crossovers: '+str(new_cross_count)+')')
+display_partition(a_nodes, b_nodes)
 iterations=[]
 
 for i in range(len(crosses)):
     iterations.append(i)
 #for loop ends
 
+plt.figure(3)
 plt.plot(iterations, crosses)
 plt.xlabel('Number of Iterations')
 plt.ylabel('Number of Crossovers Between Partitions')
