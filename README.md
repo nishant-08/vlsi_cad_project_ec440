@@ -1,7 +1,7 @@
 # vlsi_cad_project_ec440
 ## Course project for EC440: VLSI CAD
 
-### Implemented on Ubuntu 20.04.1. Tested with python3, python3.8.
+### Implemented on Ubuntu 20.04.1, Ubuntu 20.10. Tested with python3, python3.8.
 
 Completed till Partitioning step of VLSI design cycle.
 
