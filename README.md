@@ -40,19 +40,19 @@ Required Libraries:
 
   Install using the command:
   
-  ` $ sudo apt install python3-matplotlib`
+  ` # apt install python3-matplotlib`
 
   or
 
-  ` $ sudo apt-get install python3-matplotlib`
+  ` # apt-get install python3-matplotlib`
 
 
 - networkx
 
   Install using the command:
 
-  ` $ sudo apt install python3-networkx`
+  ` # apt install python3-networkx`
 
   or
 
-  ` $ sudo apt-get install python3-networkx`
+  ` # apt-get install python3-networkx`
