@@ -13,20 +13,26 @@ Files:
 
 2) netlist_parser.py
 
-   Parses through the netlist (.isc) file and generates a file 'kl_input.txt'
-   containing node pairs that have connection between them. Currently, only
-   works for the given file (supports parsing through a small subset of syntax
-   of the netlist).
+   Parses through the netlist (.isc) file and generates a file 'connections.txt'
+   containing node pairs that have connection between them. It also creates new
+   nodes dedicated to the module outputs (absent in the netlist (.isc) file).
+   Currently, only works for the given file (supports parsing through a small
+   subset of syntax of the netlist).
 
 3) kl_partitioning.py
 
-   Reads the file 'kl_input.txt' and performs the KL partitioning algorithms
+   Reads the file 'connections.txt' and performs the KL partitioning algorithms
    on the netlist. The algorithm stops iterating when the new swap results in
    more number of crossovers or the number of crossovers remain constant for
    five iterations. Also, plots the graph of number of crossovers vs iterations.
    Displays the partitioning before and after applying KL algorithm, clearly
    showing the reduction in number of crossovers.
 
+4) placement.py
+
+   Reads the file 'connections.txt' and performs placement. The I/O nodes are
+   placed at the boundary of the silicon area. Placement is done using standard
+   cell layout. So, floorplanning is the same as placement.
 
 Run the following commands in the terminal:
 
@@ -34,12 +40,14 @@ Run the following commands in the terminal:
 
 ` $ python3 kl_partitioning.py` or ` $ python3.8 kl_partitioning.py`
 
+` $ python3 placement.py` or ` $ python3.8 placement.py`
+
 
 Required Libraries:
 - matplotlib
 
   Install using the command:
-  
+
   ` # apt install python3-matplotlib`
 
   or
