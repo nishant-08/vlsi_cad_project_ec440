@@ -1,9 +1,9 @@
 # vlsi_cad_project_ec440
 ## Course project for EC440: VLSI CAD
 
-### Implemented on Ubuntu 20.04.1, Ubuntu 20.10. Tested with python3, python3.8.
+### Implemented on Ubuntu 20.10. Tested with python3, python3.8.
 
-Completed till Partitioning step of VLSI design cycle.
+Completed till Placement step of VLSI design cycle.
 
 
 Files:
@@ -31,8 +31,12 @@ Files:
 4) placement.py
 
    Reads the file 'connections.txt' and performs placement. The I/O nodes are
-   placed at the boundary of the silicon area. Placement is done using standard
-   cell layout. So, floorplanning is the same as placement.
+   placed at the boundary of the silicon area. Displayes the placement after
+   I/O nodes placement and after gates placement. Placement is done using
+   standard cell layout. So, floorplanning is the same as placement. Also writes
+   layout data in 'layout.txt' in the following format:
+
+   <node_number> <x_coordinate> <y_coordinate> <gate_size/0(input)/-1(output)>
 
 Run the following commands in the terminal:
 
