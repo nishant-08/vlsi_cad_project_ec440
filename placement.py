@@ -246,7 +246,11 @@ def calc_next_gate_coordinate(last_coordinate, last_size, w):
 #function to place gates in on the silicon area
 def place_gates(gate_sizes, gates, node_placement, fname1, w):
     last_coordinate = [29, 19]
-    temp_gates = gates
+    temp_gates=[]
+
+    for i in range(len(gates)):
+        temp_gates.append(gates[i])
+    #for
 
     for i in range(len(gates)):
         min_cost = calc_cost(fname1, temp_gates[0], last_coordinate, node_placement)
@@ -337,21 +341,21 @@ print('Writing layout data in layout.txt...')
 fh = open(fname3, 'w')
 
 for node in node_placement:
-
     if (node in gates):
-        s = node + ' ' + str(node_placement[node][0]) + ' ' + str(node_placement[node][0]) + ' ' + gate_sizes[node] + '\n'
+        s = node + ' ' + str(node_placement[node][0]) + ' ' + str(node_placement[node][1]) + ' ' + str(gate_sizes[node]) + '\n'
     #if
 
     elif (node in ips):
-        s = node + ' ' + str(node_placement[node][0]) + ' ' + str(node_placement[node][0]) + ' ' + '0' + '\n'
+        s = node + ' ' + str(node_placement[node][0]) + ' ' + str(node_placement[node][1]) + ' ' + '0' + '\n'
     #elif
 
     else:
-        s = node + ' ' + str(node_placement[node][0]) + ' ' + str(node_placement[node][0]) + ' ' + '-1' + '\n'
+        s = node + ' ' + str(node_placement[node][0]) + ' ' + str(node_placement[node][1]) + ' ' + '-1' + '\n'
     #else
 
     fh.write(s)
-#else
+#for
+
 print('Placement completed.')
 fh.close()
 plt.show()
