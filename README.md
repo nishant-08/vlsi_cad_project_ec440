@@ -38,6 +38,14 @@ Files:
 
    <node_number> <x_coordinate> <y_coordinate> <gate_size/0(input)/-1(output)>
 
+5) routing.py
+
+   Reads the file ‘layout.txt’, ‘connections.txt’, and ‘netlist.isc’ to perform
+   routing. It uses two matrices to assist in the routing process, i.e.
+   connection matrix and hvcn (horizontal-vertical-cross-none) matrix. The
+   connection matrix is used to mark the  grid blocks with the nodes they belong
+   to. hvcn matrix is used to avoid wrong overappings in the interconnections.
+
 Run the following commands in the terminal:
 
 ` $ python3 netlist_parser.py` or ` $ python3.8 netlist_parser.py`
@@ -46,6 +54,8 @@ Run the following commands in the terminal:
 
 ` $ python3 placement.py` or ` $ python3.8 placement.py`
 
+` $ python3 routing.py` or ` $ python3.8 routing.py`
+(Gets stck in an infinite loop while routing one of the connections)
 
 Required Libraries:
 - matplotlib
