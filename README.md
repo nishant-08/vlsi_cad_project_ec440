@@ -55,7 +55,8 @@ Run the following commands in the terminal:
 ` $ python3 placement.py` or ` $ python3.8 placement.py`
 
 ` $ python3 routing.py` or ` $ python3.8 routing.py`
-(Gets stck in an infinite loop while routing one of the connections)
+
+(Gets stuck in an infinite loop while routing one of the connections)
 
 Required Libraries:
 - matplotlib
